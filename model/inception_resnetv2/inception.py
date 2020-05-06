@@ -95,7 +95,7 @@ def Inception2b(layer,kernel_array,stride_array,filter_array):
     x2 = BatchNormalization()(x2)
     x2 = ReLU()(x2)       
     
-    x = Concatenate(axis=-1)([x1,x2,x3])
+    x = Concatenate(axis=-1)([x1,x2])
     return x
 
 def Inception3a(layer,kernel_array,stride_array,filter_array):
