@@ -6,7 +6,7 @@ from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Input, Conv2D, ReLU, BatchNormalization, Add, AveragePooling2D, Flatten, Dense, MaxPooling2D, Dropout, Concatenate, Average, ZeroPadding2D
 import pickle
 import matplotlib.pyplot as plt
-from imgclasslib.model.inceptionv3.inception import *
+from imgclasslib.model.inception_resnetv2.inception import *
 
 def create_inception_resnetv2(IMG_SIZE,num_categories=4):
     inputs = Input(shape=(IMG_SIZE,IMG_SIZE,3))
