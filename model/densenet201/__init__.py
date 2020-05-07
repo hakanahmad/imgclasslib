@@ -25,7 +25,7 @@ def create_densenet201(IMG_SIZE,num_categories=4):
     x = dense_block(x,32)
     x = BatchNormalization()(x)
     x = ReLU()(x)
-    x = GlobalAveragePooling2D(pool_size=7)(x)
+    x = GlobalAveragePooling2D()(x)
     x = Flatten()(x)
     outputs = Dense(num_categories,activation='softmax')(x)
     model = Model(inputs,outputs)
