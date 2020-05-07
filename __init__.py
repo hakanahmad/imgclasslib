@@ -233,7 +233,7 @@ class ImageClassifier:
             plt.figure(figsize=(10,4*(len(self.testing_data)//2)))
             for pred in self.predict:
                 self.result.append(self.CATEGORIES[np.argmax(pred)])
-            print(self.result)
+            #print(self.result)
             for idx,im in enumerate(self.X_test):
                 plt.subplot(len(self.testing_data),2,idx+1)
                 plt.imshow(im)
