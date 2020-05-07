@@ -25,6 +25,6 @@ def dense_block(x,blocks):
 def transition_block(layer):
     x = BatchNormalization()(layer)
     x = ReLU()(x)
-    x = Conv2D(kernel_size=1,strides=2,filters=32)(x)
+    x = Conv2D(kernel_size=1,strides=2,filters=32,padding='same')(x)
     x = AveragePooling2D(pool_size=2,strides=2)(x)
     return x
