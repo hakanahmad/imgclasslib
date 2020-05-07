@@ -10,11 +10,11 @@ from imgclasslib.model.densenet402.block import *
 
 def create_densenet402(IMG_SIZE,num_categories=4):
     inputs = Input(shape=(IMG_SIZE,IMG_SIZE,3))
-    x = ZeroPadding2D(padding=(3,3))(inputs)
+    x = ZeroPadding2D(padding=((3,3),(3,3))(inputs)
     x = Conv2D(kernel_size=7,strides=2,filters=64)(x)
     x = BatchNormalization()(x)
     x = ReLU()(x)
-    x = ZeroPadding2D(padding=(1,1))(x)
+    x = ZeroPadding2D(padding=((1,1),(1,1))(x)
     x = MaxPooling2D(pool_size=3,strides=2)(x)
     x = dense_block(x,12)
     x = transition_block(x)
