@@ -16,6 +16,7 @@ from imgclasslib.model.darknet53 import create_darknet53
 from imgclasslib.model.darknet19 import create_darknet19
 from imgclasslib.model.inception_resnetv2 import create_inception_resnetv2
 from imgclasslib.model.densenet201 import create_densenet201
+from imgclasslib.model.densenet402 import create_densenet402
 
 class ImageClassifier:
     def __init__(self):
@@ -169,28 +170,30 @@ class ImageClassifier:
         '''
         model = (str) type of model
         '''
-        if model == 'resnet50' and self.IMG_SIZE==224:
+        if model == 'resnet50' and self.IMG_SIZE>=224:
             self.model = create_resnet50(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
         elif model == 'lenet':
             self.model = create_lenet(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'alexnet' and self.IMG_SIZE==224:
+        elif model == 'alexnet' and self.IMG_SIZE>=224:
             self.model = create_alexnet(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'vggnet' and self.IMG_SIZE==224:
+        elif model == 'vggnet' and self.IMG_SIZE>=224:
             self.model = create_vggnet(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'googlenet' and self.IMG_SIZE==224:
+        elif model == 'googlenet' and self.IMG_SIZE>=224:
             self.model = create_googlenet(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'squeezenet' and self.IMG_SIZE == 227:
+        elif model == 'squeezenet' and self.IMG_SIZE >= 227:
             self.model = create_squeezenet(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'inceptionv3' and self.IMG_SIZE == 299:
+        elif model == 'inceptionv3' and self.IMG_SIZE >= 299:
             self.model = create_inceptionv3(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'darknet53' and self.IMG_SIZE == 256:
+        elif model == 'darknet53' and self.IMG_SIZE >= 256:
             self.model = create_darknet53(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'darknet19' and self.IMG_SIZE == 256:
+        elif model == 'darknet19' and self.IMG_SIZE >= 256:
             self.model = create_darknet19(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'inception_resnetv2' and self.IMG_SIZE == 299:
+        elif model == 'inception_resnetv2' and self.IMG_SIZE >= 299:
             self.model = create_inception_resnetv2(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
         elif model == 'densenet201' and self.IMG_SIZE >= 224:
             self.model = create_densenet201(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
+        elif model == 'densenet224' and self.IMG_SIZE >= 224:
+            self.model = create_densenet402(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
         else:
             print("Cannot create model or the image size is wrong")
         if self.model != None:
