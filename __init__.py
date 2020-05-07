@@ -4,6 +4,7 @@ import cv2
 import pickle
 import random
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 from imgclasslib.model.alexnet import create_alexnet
 from imgclasslib.model.googlenet import create_googlenet
 from imgclasslib.model.inceptionv3 import create_inceptionv3
@@ -75,11 +76,12 @@ class ImageClassifier:
         path_train = os.path.join(self.DATADIR,'train')
         path_test = os.path.join(self.DATADIR,'test')
         self.CATEGORIES = [str(category) for category in os.listdir(path_train)]
-        print('Creating Training Data...')
+        print('Creating Data...')
         for category in self.CATEGORIES:
             path_cat = os.path.join(path_train,category)
             self.class_num = self.CATEGORIES.index(category)
-            for img in os.listdir(path_cat):
+            desc = "training_data: {}".format(category)
+            for img in tqdm(os.listdir(path_cat),ascii=True,desc=desc):
                 try:   
                     self.img_array = cv2.imread(os.path.join(path_cat,img))
                     self.img_array = cv2.cvtColor(self.img_array,cv2.COLOR_BGR2RGB)
@@ -92,8 +94,8 @@ class ImageClassifier:
                         pass
                 except Exception as e:
                     pass
-            print('Training data class {} successfully created'.format(self.CATEGORIES[self.class_num]))
-        print('\nCreating Testing Data...')
+            #print('Training data class {} successfully created'.format(self.CATEGORIES[self.class_num]))
+        #print('\nCreating Testing Data...')
         #for img in os.listdir(path_test):
         #    self.test_array = cv2.imread(os.path.join(path_test,img))
         #    self.test_array = cv2.resize(self.test_array,(self.IMG_SIZE,self.IMG_SIZE))
@@ -102,7 +104,8 @@ class ImageClassifier:
         for category in self.CATEGORIES:
             path_cat = os.path.join(path_test,category)
             self.class_num = self.CATEGORIES.index(category)
-            for img in os.listdir(path_cat):
+            desc = "testing_data: {}".format(category)
+            for img in tqdm(os.listdir(path_cat),ascii=True,desc=desc):
                 try:   
                     self.test_array = cv2.imread(os.path.join(path_cat,img))
                     self.test_array = cv2.cvtColor(self.test_array,cv2.COLOR_BGR2RGB)
@@ -110,8 +113,8 @@ class ImageClassifier:
                     self.testing_data.append([self.new_array,self.class_num])
                 except Exception as e:
                     pass
-            print('Testing data class {} successfully created'.format(self.CATEGORIES[self.class_num]))
-        print('Testing data successfully created')
+            #print('Testing data class {} successfully created'.format(self.CATEGORIES[self.class_num]))
+        print('Data successfully created')
         random.shuffle(self.training_data)
         random.shuffle(self.testing_data)
         print('Separating the images and labels in the training data...')
