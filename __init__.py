@@ -162,7 +162,7 @@ class ImageClassifier:
         else:
             print('Please input the (X_pickle,y_pickle) argument')
         
-    def setModel(self,model=None):
+    def setModel(self,model=None,print_model=False):
         '''
         model = (str) type of model
         '''
@@ -190,6 +190,7 @@ class ImageClassifier:
             print("Cannot create model or the image size is wrong")
         if self.model != None:
             print('The model to use is {}'.format(str(model)))
+        if print_model == True:
             self.model.summary()
     
     def trainModel(self,batch_size=1,epochs=25):
