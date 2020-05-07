@@ -189,7 +189,7 @@ class ImageClassifier:
             self.model = create_darknet19(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
         elif model == 'inception_resnetv2' and self.IMG_SIZE == 299:
             self.model = create_inception_resnetv2(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
-        elif model == 'inception_resnetv2' and self.IMG_SIZE >= 32:
+        elif model == 'densenet201' and self.IMG_SIZE >= 32:
             self.model = create_inception_densenet201(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
         else:
             print("Cannot create model or the image size is wrong")
