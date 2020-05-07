@@ -26,7 +26,6 @@ def create_densenet201(IMG_SIZE,num_categories=4):
     x = BatchNormalization()(x)
     x = ReLU()(x)
     x = GlobalAveragePooling2D()(x)
-    x = Flatten()(x)
     outputs = Dense(num_categories,activation='softmax')(x)
     model = Model(inputs,outputs)
     model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
