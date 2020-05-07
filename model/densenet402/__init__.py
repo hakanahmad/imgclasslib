@@ -6,9 +6,9 @@ from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Input, Conv2D, ReLU, BatchNormalization, Add, AveragePooling2D, Flatten, Dense, MaxPooling2D, Dropout, Concatenate, Average, ZeroPadding2D, LeakyReLU, GlobalAveragePooling2D
 import pickle
 import matplotlib.pyplot as plt
-from imgclasslib.model.densenet201.block import *
+from imgclasslib.model.densenet402.block import *
 
-def create_densenet201(IMG_SIZE,num_categories=4):
+def create_densenet402(IMG_SIZE,num_categories=4):
     inputs = Input(shape=(IMG_SIZE,IMG_SIZE,3))
     x = ZeroPadding2D(padding=(3,3))(inputs)
     x = Conv2D(kernel_size=7,strides=2,filters=64)(x)
