@@ -15,7 +15,7 @@ def create_densenet201(IMG_SIZE,num_categories=4):
     x = BatchNormalization()(x)
     x = ReLU()(x)
     x = ZeroPadding2D(padding=(1,1))(x)
-    x = MaxPooling2D(padding=3,strides=2)(x)
+    x = MaxPooling2D(pool_size=3,strides=2)(x)
     x = dense_block(x,6)
     x = transition_block(x)
     x = dense_block(x,12)
