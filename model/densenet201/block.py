@@ -17,9 +17,9 @@ def conv_block(layer,kernel_array,stride_array,filter_array):
     x = Concatenate()([layer,x1])
     return x
 
-def dense_block(layer,blocks):
+def dense_block(x,blocks):
     for i in range(blocks):
-        x = conv_block(layer,[1,3],[1,1],[4*32,32])
+        x = conv_block(x,[1,3],[1,1],[4*32,32])
     return x
 
 def transition_block(layer):
