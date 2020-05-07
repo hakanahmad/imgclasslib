@@ -81,7 +81,7 @@ class ImageClassifier:
             path_cat = os.path.join(path_train,category)
             self.class_num = self.CATEGORIES.index(category)
             desc = "training_data: {}".format(category)
-            for img in tqdm(os.listdir(path_cat),ascii=True,desc=desc,ncols=20):
+            for img in tqdm(os.listdir(path_cat),ascii=True,desc=desc,ncols=200):
                 try:   
                     self.img_array = cv2.imread(os.path.join(path_cat,img))
                     self.img_array = cv2.cvtColor(self.img_array,cv2.COLOR_BGR2RGB)
@@ -105,7 +105,7 @@ class ImageClassifier:
             path_cat = os.path.join(path_test,category)
             self.class_num = self.CATEGORIES.index(category)
             desc = "testing_data: {}".format(category)
-            for img in tqdm(os.listdir(path_cat),ascii=True,desc=desc,ncols=20):
+            for img in tqdm(os.listdir(path_cat),ascii=True,desc=desc,ncols=200):
                 try:   
                     self.test_array = cv2.imread(os.path.join(path_cat,img))
                     self.test_array = cv2.cvtColor(self.test_array,cv2.COLOR_BGR2RGB)
