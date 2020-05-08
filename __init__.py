@@ -33,7 +33,8 @@ class ImageClassifier:
         self.X = []
         self.y = []
         self.save_pickle = None
-        self.get_available_model = ['resnet50','lenet','alexnet','vggnet','googlenet','squeezenet','inceptionv3','darknet53','darknet19','inception_resnetv2','densenet201']
+        self.get_available_model = ['resnet50','lenet','alexnet','vggnet','googlenet','squeezenet','inceptionv3','darknet53','darknet19','inception_resnetv2','densenet201','densenet402',
+                                   'xception']
         self.model = None
         self.func = None
         self.X_train = []
