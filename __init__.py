@@ -17,6 +17,7 @@ from imgclasslib.model.darknet19 import create_darknet19
 from imgclasslib.model.inception_resnetv2 import create_inception_resnetv2
 from imgclasslib.model.densenet201 import create_densenet201
 from imgclasslib.model.densenet402 import create_densenet402
+from imgclasslib.model.xception import create_xception
 
 class ImageClassifier:
     def __init__(self):
@@ -194,6 +195,8 @@ class ImageClassifier:
             self.model = create_densenet201(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
         elif model == 'densenet402' and self.IMG_SIZE >= 224:
             self.model = create_densenet402(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
+        elif model == 'xception' and self.IMG_SIZE >= 299:
+            self.model = create_xception(self.IMG_SIZE,num_categories=len(self.CATEGORIES))
         else:
             print("Cannot create model or the image size is wrong")
         if self.model != None:
