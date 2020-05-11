@@ -62,5 +62,9 @@ def create_googlenet(IMG_SIZE,num_categories=4):
     outputs3 = Dense(num_categories,activation='softmax')(x)
     #outputs = Average()([outputs1,outputs2,outputs3])
     model = Model(inputs,[outputs1,outputs2,outputs3])
-    model.compile(optimizer='sgd',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+    if num_categories == 2:
+        loss = 'binary_crossentropy'
+    elif num_categories > 2:
+        loss = 'sparse_categorical_crossentropy'
+    model.compile(optimizer='adam',loss=loss,metrics=['accuracy'])
     return model
