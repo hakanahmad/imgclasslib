@@ -5,6 +5,7 @@ import pickle
 import random
 import matplotlib.pyplot as plt
 from tqdm import tqdm
+from tensorflow.keras.utils import to_categorical
 from imgclasslib.model.alexnet import create_alexnet
 from imgclasslib.model.googlenet import create_googlenet
 from imgclasslib.model.inceptionv3 import create_inceptionv3
@@ -150,6 +151,8 @@ class ImageClassifier:
         if split>0 and split <1:
             self.X_train, self.y_train = self.X[:int(self.X.shape[0]*(1-split))], self.y[:int(self.X.shape[0]*(1-split))]
             self.X_val, self.y_val = self.X[int(self.X.shape[0]*(1-split)):], self.y[int(self.X.shape[0]*(1-split)):]
+            self.y_train = to_categorical(self.y_train,num_classes=len(self.CATEGORIES))
+            self.y_val = to_categorical(self.y_val,num_classes=len(self.CATEGORIES))
             print('All complete')
         else:
             print('Please enter the split arguement between 0 and 1')
