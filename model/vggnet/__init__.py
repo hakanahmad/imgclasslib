@@ -33,5 +33,9 @@ def create_vggnet(IMG_SIZE,num_categories=4):
     x = Dense(4096,activation='relu')(x)
     outputs = Dense(num_categories,activation='softmax')(x)
     model = Model(inputs,outputs)
-    model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+    if num_categories == 2:
+        loss = 'binary_crossentropy'
+    elif num_categories > 2:
+        loss = 'sparse_categorical_crossentropy'
+    model.compile(optimizer='adam',loss=loss,metrics=['accuracy'])
     return model
