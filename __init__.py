@@ -6,6 +6,7 @@ import random
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.callbacks import EarlyStopping
 from imgclasslib.model.alexnet import create_alexnet
 from imgclasslib.model.googlenet import create_googlenet
 from imgclasslib.model.inceptionv3 import create_inceptionv3
@@ -207,10 +208,14 @@ class ImageClassifier:
             print('The model to use is {}'.format(str(model)))
             self.model.summary()
     
-    def trainModel(self,batch_size=1,epochs=25):
+    def trainModel(self,batch_size=1,epochs=25,early_stopping=True):
+        es = EarlyStopping(monitor='val_loss',patience=2,verbose=1)
         if self.model != None:
             print('Training Model...')
-            self.history = self.model.fit(self.X_train,self.y_train,batch_size=batch_size,epochs=epochs,validation_data=(self.X_val,self.y_val),verbose=1)
+            if early_stopping:
+                self.history = self.model.fit(self.X_train,self.y_train,batch_size=batch_size,epochs=epochs,validation_data=(self.X_val,self.y_val),verbose=1,callbacks=[es])
+            else:
+                self.history = self.model.fit(self.X_train,self.y_train,batch_size=batch_size,epochs=epochs,validation_data=(self.X_val,self.y_val),verbose=1)
             print('Finished Training Model')
             self.trained = True
         else:
