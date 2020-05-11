@@ -18,5 +18,9 @@ def create_lenet(IMG_SIZE,num_categories=4):
     x = Dense(84,activation='tanh')(x)
     outputs = Dense(num_categories,activation='softmax')(x)
     model = Model(inputs,outputs)
-    model.compile(optimizer='SGD',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+    if num_categories == 2:
+        loss = 'binary_crossentropy'
+    elif num_categories > 2:
+        loss = 'sparse_categorical_crossentropy'
+    model.compile(optimizer='adam',loss=loss,metrics=['accuracy'])
     return model
